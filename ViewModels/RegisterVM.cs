@@ -12,6 +12,8 @@ namespace ARD.ViewModels
         public string? Password { get; set;}
 
         [Compare("Password", ErrorMessage = "Passwords must match")]
+        [Display(Name = "Confirm Password")]
+        [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set;}
     }
 }

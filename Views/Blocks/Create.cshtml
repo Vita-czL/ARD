@@ -1,0 +1,45 @@
+@model WatchedPosition
+
+@{
+    ViewData["Title"] = "Add new watched position";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add new position</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control"/>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="X" class="control-label"></label>
+                        <input asp-for="X" class="form-control"/>
+                        <span asp-validation-for="X" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Y" class="control-label"></label>
+                        <input asp-for="Y" class="form-control"/>
+                        <span asp-validation-for="Y" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Z" class="control-label"></label>
+                        <input asp-for="Z" class="form-control"/>
+                        <span asp-validation-for="Z" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="create" class="btn btn-outline-success float-right" asp-action="Create"/>
+                        <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

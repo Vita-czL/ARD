@@ -6,10 +6,12 @@ namespace ARD.Controllers
     public class AccountController : Controller
     {
         private readonly SignInManager<AppUser> singInManager;
+        private readonly UserManager<AppUser> userManager;
 
-        public AccountController(SignInManager<AppUser> singInManager)
+        public AccountController( SignInManager<AppUser> singInManager)
         {
             this.singInManager = singInManager;
+            this.userManager = userManager;
         }
 
         public IActionResult Login()
@@ -18,7 +20,7 @@ namespace ARD.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(LoginVM model)
+        public async Task<IActionResult> Login(LoginVM model)
         {
             if (ModelState.IsValid)
             {
@@ -39,10 +41,38 @@ namespace ARD.Controllers
         {
             return View();
         }
-
-        public IActionResult Logout()
+        
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM model)
         {
+            if (ModelState.IsValid) 
+            {
+                AppUser user = new()
+                {
+                    Nickname = model.Nickname,
+                    Email = model.Email,
+                };
+
+                var result = await userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await singInManager.SignInAsync(user, false);
+
+                    return RedirectToAction("Index","Home");
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
             return View();
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await singInManager.SignOutAsync();
+            return RedirectToAction("Index","Home");
         }
     }
 }

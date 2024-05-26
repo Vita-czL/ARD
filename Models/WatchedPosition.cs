@@ -6,6 +6,11 @@ namespace ARD.Models
         public int WatchedPositionId { get; set; }
 
         [Required]
+        [StringLength(100)]
+        [MaxLength(100, ErrorMessage = "The name must be under 100 characters")]
+        public string? Name { get; set; }
+
+        [Required]
         public int X { get; set; }
 
         [Required]

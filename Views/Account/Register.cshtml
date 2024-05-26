@@ -6,7 +6,7 @@
 }
 
 <div class="row d-flex align-items-center justify-content-center">
-    <div class="col-md-3 card p-3">
+    <div class="col-md-4 card p-3">
         <h2 class="text-center text-info">Register</h2>
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -44,6 +44,6 @@
 
 @section Scripts{
     @{
-        await Html.RenderPartialAsync("");
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
     }
 }

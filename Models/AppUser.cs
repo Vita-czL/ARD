@@ -8,6 +8,6 @@ namespace ARD.Models
         [StringLength(100)]
         [MaxLength(100)]
         [Required]
-        public string? NickName { get; set;}
+        public string? Nickname { get; set;}
     }
 }

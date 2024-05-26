@@ -1,3 +1,4 @@
+using ARD.Data.Services;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IBlocksService, BlocksService>();
 
 var app = builder.Build();
 
